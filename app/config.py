@@ -1,8 +1,6 @@
-import os
-
+# app/config.py
 class Config:
-    SECRET_KEY = os.getenv('SECRET_KEY', 'my_secret_key')
-    MYSQL_HOST = 'localhost'
-    MYSQL_USER = 'root'
-    MYSQL_PASSWORD = 'root'
-    MYSQL_DB = 'book_review_platform'
+    SECRET_KEY = 'secret_key'
+    JWT_SECRET_KEY = 'jwt_secret_key'
+    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:root@localhost/book_review_platform'
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
