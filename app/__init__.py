@@ -13,6 +13,9 @@ jwt = JWTManager()
 def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
+    app.config['JWT_HEADER_NAME'] = 'x-access-token'
+    app.config['JWT_HEADER_TYPE'] = '' 
+
 
     db.init_app(app)
     bcrypt.init_app(app)
