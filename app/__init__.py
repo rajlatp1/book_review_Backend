@@ -12,15 +12,17 @@ jwt = JWTManager()
 
 def create_app():
     app = Flask(__name__)
-    app.config.from_object(Config)
-    app.config['JWT_HEADER_NAME'] = 'x-access-token'
-    app.config['JWT_HEADER_TYPE'] = '' 
+    app.config.from_object(Config)   
+    app.config['JWT_SECRET_KEY'] = 'your_jwt_secret_key'
+    app.config['JWT_TOKEN_LOCATION'] = ['cookies']
+    app.config['JWT_COOKIE_SECURE'] = False
+    app.config['JWT_COOKIE_CSRF_PROTECT'] = False
 
 
     db.init_app(app)
     bcrypt.init_app(app)
     jwt.init_app(app)
-    CORS(app)
+    CORS(app, supports_credentials=True)
 
     with app.app_context():
         from app import routes
